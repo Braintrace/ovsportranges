@@ -8,10 +8,9 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='ovsportranges',
-    version='1.0.0',
+    version='0.1.0',
     license='MIT',
-    packages='ovsportranges',
-    include_package_data=True,
+    py_modules=['ovsportranges'],
     description='OVS bitwise port/mask ranges',
     long_description=long_description,
     long_description_content_type='text/markdown',

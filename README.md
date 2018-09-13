@@ -18,7 +18,7 @@ It is recommended to only use this for large ranges that would require a large n
 
 ### Basic Usage
 ``` python
-from ovsportranges.ovsports import OvsPorts
+from ovsportrange import OvsPorts
 
 if __name__ == "__main__":
     ovsports = OvsPorts()
