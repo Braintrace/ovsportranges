@@ -1,3 +1,4 @@
+from collections import namedtuple
 from math import isnan
 
 """
@@ -50,10 +51,9 @@ class OvsPorts:
         This class is used to get port ranges for ovs-ofctl rules.
     """
     def __init__(self):
-        pass
+        self.port_range = namedtuple('PortRange', ['port', 'bitmask'])
 
-    @staticmethod
-    def __bitwise_matches(start, end):
+    def __bitwise_matches(self, start, end):
         """ Function to breakdown port range into bitwise matches with mask
         :param start: port range start number
         :param end: port range end number
@@ -68,7 +68,9 @@ class OvsPorts:
         while start & mask:
             if current_port & bit:
                 if current_port != mask:
-                    ranges_found.append("{}/{}".format(hex(current_port), hex(mask)))
+                    ranges_found.append(
+                        self.port_range(int(current_port), int(mask))
+                    )
                 if (current_port + bit) < 65536:
                     current_port += bit
                 else:
@@ -82,12 +84,14 @@ class OvsPorts:
             mask |= bit
 
             if end & bit:
-                ranges_found.append("{}/{}".format(hex(current_port), hex(mask)))
+                ranges_found.append(
+                    self.port_range(int(current_port), int(mask))
+                )
                 current_port |= bit
 
         return ranges_found, current_port
 
-    def get_hex_ports(self, start, end):
+    def get_port_ranges(self, start, end):
         """ Function to get all port/mask ranges between start and end port
         :param start: port range start number
         :param end: port range end number
@@ -121,3 +125,10 @@ class OvsPorts:
             return ranges
         except Exception:
             raise
+
+
+if __name__ == "__main__":
+    ovsports = OvsPorts()
+    ranges = ovsports.get_port_ranges(1000, 1999)
+    for r in ranges:
+        print("Port: {}, Bitmask: {}".format(r.port, r.bitmask))

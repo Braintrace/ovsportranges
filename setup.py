@@ -8,7 +8,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='ovsportranges',
-    version='0.1.0',
+    version='0.1.1',
     license='MIT',
     py_modules=['ovsportranges'],
     description='OVS bitwise port/mask ranges',
@@ -26,8 +26,8 @@ setup(
         'Operating System :: OS Independent',
         'Intended Audience :: Information Technology',
         'Topic :: System :: Networking',
-        'License :: OSI Approved :: MIT License'
-        'Programming Language :: Python :: 2.7'
-        'Programming Language :: Python :: 3'
+        'License :: OSI Approved :: MIT License',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
     ]
 )

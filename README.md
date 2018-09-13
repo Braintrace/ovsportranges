@@ -22,19 +22,18 @@ from ovsportrange import OvsPorts
 
 if __name__ == "__main__":
     ovsports = OvsPorts()
-    ranges = ovsports.get_hex_ports(1000, 1999)
+    ranges = ovsports.get_port_ranges(1000, 1999)
     for r in ranges:
-        print(r)
+        print("Port: {}, Bitmask: {}".format(r.port, r.bitmask))
 ```
 
 ### Output
 ```text
-0x3e8/0xfff8
-0x3f0/0xfff0
-0x400/0xfe00
-0x600/0xff00
-0x700/0xff80
-0x780/0xffc0
-0x7c0/0xfff0
+Port: 1000, Bitmask: 65528
+Port: 1008, Bitmask: 65520
+Port: 1024, Bitmask: 65024
+Port: 1536, Bitmask: 65280
+Port: 1792, Bitmask: 65408
+Port: 1920, Bitmask: 65472
+Port: 1984, Bitmask: 65520
 ```
-
